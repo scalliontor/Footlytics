@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+data/
+weights/
+*.mp4
+*.mkv
+*.parquet
+.DS_Store
+.ipynb_checkpoints/
+calib/_synthetic*
+weights/
+calib/_synthetic*
