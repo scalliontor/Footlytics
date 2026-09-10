@@ -96,15 +96,30 @@ def tile_grid(width: int, height: int, tile: int = 1280, overlap: float = 0.25
 class DetectorConfig:
     tile: int = 1280           # 0 or negative disables tiling
     overlap: float = 0.25
-    #: Measured on real footage (scripts/tune_detector.py): raising the gate to
-    #: 0.25 costs 18 points of recall (84.3% -> 66.5%) and buys 20 of precision.
-    #: For tracking, recall is worth more -- a missed player breaks a track,
-    #: whereas a transient false positive is killed by the tracker's min_hits
-    #: rule and the eleven-a-side quota. Two things that seemed obvious and were
-    #: not: brightening the frame LOSES 16 points of recall (it washes 48-pixel
-    #: players into a floodlit background), and smaller tiles lose 7 (the model
-    #: has a scale it was trained at, and zooming past it does not help).
-    conf: float = 0.10
+    #: Measured end to end on real footage, not argued from first principles.
+    #:
+    #: The gate was briefly set to 0.10 on the reasoning that recall matters more
+    #: than precision for tracking -- a missed player breaks a track, whereas a
+    #: false positive would be filtered by the tracker's min_hits rule. That was
+    #: wrong, and measuring it (scripts/compare_conf.py, 250 real frames) showed
+    #: the opposite:
+    #:
+    #:     conf   tracklets  recall  precision  ID switches  players/frame
+    #:     0.10       133      74%       77%        347           21
+    #:     0.25        78      60%       94%        179           14
+    #:     0.35        60      53%       97%        147           12
+    #:
+    #: False positives do not get quietly filtered. They spawn tracks, compete
+    #: in the association step, and fragment identity worse than the missing
+    #: players do -- 0.10 produced nearly twice the identity switches of 0.25.
+    #:
+    #: 0.25 is the compromise: identity clean enough to watch, at 14 of 22
+    #: players seen. None of these is good enough for analysis, which is the
+    #: real finding -- the detector has to improve, and no gate tunes around it.
+    #:
+    #: Two other things that seemed obvious and measured the other way:
+    #: brightening the frame loses 16 points of recall, and smaller tiles lose 7.
+    conf: float = 0.25
     ball_conf: float = 0.10    # the ball is small and faint; let it through
     iou_merge: float = 0.55
     imgsz: int = 1280

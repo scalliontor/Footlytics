@@ -35,10 +35,12 @@ from ..state.schema import MatchMeta, MatchState, Role, Team, TeamInfo
 class PipelineConfig:
     stride: int = 1                 # process every Nth frame
     max_frames: Optional[int] = None
-    #: Discard anything the homography places well outside the pitch. These are
+    #: Discard anything the homography places outside the pitch. These are
     #: nearly always substitutes, staff and spectators, and they wreck both the
-    #: team clustering and the "22 players" sanity check.
-    pitch_margin_m: float = 6.0
+    #: team clustering and the "22 players" sanity check. 6 m was too generous --
+    #: the spurious boxes on a sampled frame sat at y = 40 m on a 38 m half-width,
+    #: i.e. just off the touchline, and sailed through.
+    pitch_margin_m: float = 2.0
     use_appearance: bool = True
     team_fit_sample: int = 4000     # descriptors sampled to fit the kit clusters
     #: Join track fragments into whole-player tracklets before deciding identity.
