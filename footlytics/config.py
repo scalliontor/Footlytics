@@ -21,8 +21,15 @@ YOLO_FILE = "yolo_v8x6_finetuned.pt"
 SIGLIP_MODEL = "google/siglip2-base-patch16-224"
 
 # --- narration layer (parked until the tracking is trustworthy) ---------------
-# Self-hosted Gemma, OpenAI-compatible. Base URL must keep its trailing slash.
-# NOTE: plain HTTP -- key and payloads are unencrypted in transit. Local use only.
+# Self-hosted Gemma, OpenAI-compatible. Configure via environment; nothing is
+# hard-coded, because this repository is public and a default in the source is a
+# published credential. The base URL must keep its trailing slash.
+#
+#     export FOOTLYTICS_LLM_URL="http://<host>:<port>/llm/v1/"
+#     export FOOTLYTICS_LLM_KEY="..."
+#
+# Note the endpoint is plain HTTP: the key and every prompt travel unencrypted.
+# Acceptable on a trusted network, not for anything client-facing.
 LLM_BASE_URL = os.getenv("FOOTLYTICS_LLM_URL", "")
 LLM_API_KEY = os.getenv("FOOTLYTICS_LLM_KEY", "")
 LLM_MODEL = os.getenv("FOOTLYTICS_LLM_MODEL", "gemma-4")
