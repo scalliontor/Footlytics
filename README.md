@@ -7,6 +7,17 @@ on top of that.
 Target user: V.League 1 and 2 clubs, who currently have no access to the
 tracking-data analysis that is routine in European leagues.
 
+## Video demos
+
+[![Ground-truth video and radar preview](docs/demos/gt-video-radar-40s.jpg)](https://github.com/scalliontor/Footlytics/raw/refs/heads/main/docs/demos/gt-video-radar-40s.mp4)
+
+**[Watch / download the GT showcase (40 seconds)](https://github.com/scalliontor/Footlytics/raw/refs/heads/main/docs/demos/gt-video-radar-40s.mp4)** · [All demos and Vietnamese page caption](docs/demos/README.md)
+
+The showcase renders SoccerTrack v2 annotations with a smoothed tactical radar.
+It illustrates the replay experience; automated detection and tracking outputs
+are published separately with their current limitations. These existing exports
+use an experimental pitch calibration and are not validated tactical measurements.
+
 ---
 
 ## The one architectural idea

@@ -12,3 +12,6 @@ __pycache__/
 calib/_synthetic*
 /weights/
 calib/_synthetic*
+
+# Curated public demo exports
+!/docs/demos/*.mp4

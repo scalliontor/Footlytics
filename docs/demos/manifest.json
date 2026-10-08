@@ -1,0 +1,46 @@
+[
+  {
+    "file": "gt-video-radar-40s.mp4",
+    "source_file": "side_by_side_hq.mp4",
+    "duration_seconds": 40.0,
+    "width": 1600,
+    "height": 1574,
+    "fps": 25.0,
+    "bytes": 17949730,
+    "annotation_source": "SoccerTrack v2, match 117092",
+    "type": "ground-truth visualisation"
+  },
+  {
+    "file": "gt-radar-4min.mp4",
+    "source_file": "radar_4min.mp4",
+    "duration_seconds": 240.0,
+    "width": 1320,
+    "height": 880,
+    "fps": 25.0,
+    "bytes": 25713944,
+    "annotation_source": "SoccerTrack v2, match 117092",
+    "type": "ground-truth visualisation"
+  },
+  {
+    "file": "pipeline-detection-10s.mp4",
+    "source_file": "OUR_detection_clean_hq.mp4",
+    "duration_seconds": 10.0,
+    "width": 1500,
+    "height": 1584,
+    "fps": 25.0,
+    "bytes": 3633912,
+    "annotation_source": "SoccerTrack v2, match 117092",
+    "type": "model prediction"
+  },
+  {
+    "file": "pipeline-detection-low-confidence-10s.mp4",
+    "source_file": "OUR_detection_10s_hq.mp4",
+    "duration_seconds": 10.0,
+    "width": 1500,
+    "height": 1584,
+    "fps": 25.0,
+    "bytes": 3820813,
+    "annotation_source": "SoccerTrack v2, match 117092",
+    "type": "model prediction"
+  }
+]
